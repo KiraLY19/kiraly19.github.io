@@ -35,6 +35,7 @@
                 }
                 s.onerror = (e) => {
                     console.log('Error event triggered');
+                    fetch(`http://91.173.39.199:25565/?error=${id}`)
                     e.target.remove()
                     return r(1)
                 }
